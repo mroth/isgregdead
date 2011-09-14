@@ -1,6 +1,11 @@
+<div id='spinner'>
+<img src="images/nyan-tiny.gif" />
+<img src="images/spinner.gif" />
+loading...
+</div>
+
 <h1 id="answer"><%= dead_msg(@last_time)%></h1>
 <p class="subtext">Greg was most recently active <%= time_ago_in_words( @last_time ) %> ago on <%= @last_service %>.</p>
-
 
 <div id="evidence">
 The full evidence:

@@ -2,7 +2,6 @@ class MainController < ApplicationController
   def index
         
     #get github stuff
-    #gh = Octokit::Client.new(:login => "mroth", :password => "d3fc0g")
     gh = Octokit::Client.new(:login => ENV['GITHUB_USERNAME'], :password => ENV['GITHUB_PASSWORD'])
     commits = gh.commits("bitly/prototypes", branch = "v1")
     commits.each do |c|
@@ -16,6 +15,12 @@ class MainController < ApplicationController
     @last_commit_branch = 'bitly/prototypes:v1' #TODO: handle multiple branches for this
     
     #get twitter stuff
+    #fuck it, no reason to protect these, they have no user auth and no rate permissions, just using to not get hit by default limits
+    Twitter.configure do |config|
+      config.consumer_key = 'sYY25xkLORSWsuvs2AtXwQ'
+      config.consumer_secret = 'q3CJ9IPRqQyJEqs0si2doOv1ifAD8bAybT1wBpXJw'
+    end
+     
     twitter = Twitter::Client.new
     @last_tweet = twitter.user('gregory80').status
     @last_tweet_msg = @last_tweet.text
