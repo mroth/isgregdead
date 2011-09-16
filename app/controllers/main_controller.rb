@@ -1,5 +1,8 @@
 class MainController < ApplicationController
   def index
+    # add caching, heroku style: http://devcenter.heroku.com/articles/http-caching#caching_dynamic_content_by_age
+    # cache time: 3 minutes for now, let's see how that works out for us
+    response.headers['Cache-Control'] = 'public, max-age=180'
         
     #get github stuff
     gh = Octokit::Client.new(:login => ENV['GITHUB_USERNAME'], :password => ENV['GITHUB_PASSWORD'])
