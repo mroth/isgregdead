@@ -3,15 +3,15 @@ module MainHelper
   def dead_msg(time)
     return case
     when time > 2.hours.ago
-      'NO WAY'
+      'HIGHLY UNLIKELY'
     when time > 6.hours.ago
-      'EXTREMELY UNLIKELY'
+      'DUBIOUS'
     when time > 24.hours.ago
-      'DOUBTFUL'
+      "LET'S SAY... NO"
     when time > 3.days.ago
-      'POSSIBLY'
+      'ARGUABLY'
     else
-      'CALL THE COPS?!'
+      'CALL THE COPS!!'
     end
   end
 
