@@ -6,7 +6,7 @@ class MainController < ApplicationController
         
     #get github stuff
     gh = Octokit::Client.new(:login => ENV['GITHUB_USERNAME'], :password => ENV['GITHUB_PASSWORD'])
-    commits = gh.commits("bitly/prototypes", branch = "v1")
+    commits = gh.commits("bitly/prototypes", branch = "nyanbox")
     commits.each do |c|
       if c.committer.login == "gregory80"
         @last_commit = c
@@ -15,7 +15,7 @@ class MainController < ApplicationController
     end
     @last_commit_time = Time.parse(@last_commit.committed_date)
     @last_commit_msg = @last_commit.message
-    @last_commit_branch = 'bitly/prototypes:v1' #TODO: handle multiple branches for this
+    @last_commit_branch = 'bitly/prototypes:nyanbox' #TODO: handle multiple branches for this
     
     #get twitter stuff
     #fuck it, no reason to protect these, they have no user auth and no rate permissions, just using to not get hit by default limits
